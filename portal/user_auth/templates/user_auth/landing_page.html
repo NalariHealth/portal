@@ -1,5 +1,9 @@
 <!-- <img> -->
 <style>
+a > li {
+	display: block;
+}
+
 ul.tile_3 {
 	float: right;
 	text-align: center;
@@ -22,7 +26,7 @@ div.greeting {
 	width: 30%;
 }
 
-ul.across_the_top > li {
+ul.across_the_top > a {
 	display: inline-block;
 	max-width: 10%;
 	float: right;
@@ -32,7 +36,7 @@ ul.across_the_top > li {
 	margin-right: 15px;
 }
 
-ul.dropdown > li {
+ul.dropdown > a {
 	display: block;
 	width: 125px;
 	background-color: #5A9BD5;
@@ -42,19 +46,19 @@ ul.dropdown > li {
 }
 </style>
 <ul class="across_the_top">
-	<li><a>Privacy &amp; Security</a></li>
-	<li><a>Manage My Account</a></li>
-	<li><a>Setting Up My System</a></li>
-	<li><a href="https://nalarihealth.zendesk.com/hc/en-us">Support <br> Chat Now</a></li>
+	<a href="privacy_and_security.html"><li>Privacy &amp; Security</li></a>
+	<a href="manage_account.html"><li>Manage My Account</li></a>
+	<a href="setup.html"><li>Setting Up My System</li></a>
+	<a href="https://nalarihealth.zendesk.com/hc/en-us"><li>Support <br> Chat Now</li></a>
 </ul>
 <div class="greeting">
 	<h2>Welcome, Nancy!</h2>
 	<h5>You are now logged into the Nalari Health, HIPPA-compliant remote care environment.</h5>
 </div>
 <ul class="dropdown">
-	<li><a>My Patients</a></li>
-	<li><a>My Appointments</a></li>
-	<li><a>My Notes</a></li>
+	<a href="my_patients.html"><li>My Patients</li></a>
+	<a href="my_appointments.html"><li>My Appointments</li></a>
+	<a href="my_notes.html"><li>My Notes</li></a>
 </ul>
 
 <ul class="tile_3">
@@ -62,23 +66,23 @@ ul.dropdown > li {
 		<h3>Talk to a Doctor Now</h3>
 		<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
 	</a>
-	<a>
+	<a href="enroll.html">
 		<h3>Enroll Your Patient</h3>
 		<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
 	</a>
-	<a>
+	<a href="remote_care_services.html">
 		<h3>Remote Care Services</h3>
 		<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
 	</a>
-	<a>
+	<a href="biometrics.html">
 		<h3>Patient Biometrics</h3>
 		<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
 	</a>
-	<a>
+	<a href="training_and_resources.html">
 		<h3>Training and Resources</h3>
 		<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
 	</a>
-	<a>
+	<a href="qi_risk_management.html">
 		<h3>Quality Improvement / Risk Management</h3>
 		<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
 	</a>
