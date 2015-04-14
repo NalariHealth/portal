@@ -1,89 +1,121 @@
-<!-- <img> -->
-<style>
-a > li {
-	display: block;
-}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
 
-ul.tile_3 {
-	float: right;
-	text-align: center;
-	overflow: auto;
-	width: 80%;
-}
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.css">
+    <script src="bootstrap-3.3.4-dist/jQuery/jquery-1.11.2.min.js"></script>
+    <script src="bootstrap-3.3.4-dist/js/bootstrap.js"></script>
+    <style>
+      a {
+        color: #404040;
+      }
+      ul.nav navbar-nav navbar-right > li {
+        text-align: center;
+      }
+      div.col-md-9 > div.col-md-4 {
+        margin: 10px -5px 10px -5px;
+      }
+      div.col-md-9 > div.col-md-4 > a {
+        display: block;
+        min-height: 200px;
+        padding: 15px 15px 15px 15px;
+        text-align: center;
+        background-color: #dbdbdb;
+      }
+      div.col-md-3 > ul > a > li {
+        display: block;
+        margin: 15px 15px 15px -15px;
+        padding: 15px 15px 15px 15px;
+        background-color: #dbdbdb;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://nalarihealth.com/"><img src="img/logo.png" height=50px></a>
+    </div>
 
-ul.tile_3 > a {
-	display: block;
-	background: #5A9BD5;
-	float: left;
-	width: 26%;
-	min-height: 150px;
-	margin: 15px 15px 0 0;
-}
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://nalarihealth.zendesk.com/hc/en-us">Support<br>Chat Now</a></li>
+        <li><a href="setup.html">Setting Up My System</a></li>
+        <li><a href="manage_account.html">Manage My Account</a></li>
+        <li><a href="privacy_and_security.html">Privacy &amp; Security</a></li> 
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+    <div class="jumbotron">
+      <h1>Hello, Nancy!</h1>
+      <p>You are now logged into the Nalari Health, HIPPA-compliant remote care environment.</p>
+    </div>
+    
 
-div.greeting {
-	display: block;
-	float: left;
-	width: 30%;
-}
+    <div class="col-md-9">
+      <div class="col-md-4">
+        <a href="https://nalarinetwork.com/home.htm">
+          <h3>Talk to a Doctor Now</h3>
+          <p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="enroll.html">
+          <h3>Enroll Your Patient</h3>
+          <p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="remote_care_services.html">
+          <h3>Remote Care Services</h3>
+          <p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="biometrics.html">
+          <h3>Patient Biometrics</h3>
+          <p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="training_and_resources.html">
+          <h3>Training &amp; Resources</h3>
+          <p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="qi_risk_management.html">
+          <h3>Quality Improvement / Risk Management</h3>
+          <p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <ul>
+        <a href="my_patients.html"><li>My Patients</li></a>
+        <a href="my_appointments.html"><li>My Appointments</li></a>
+        <a href="my_notes.html"><li>My Notes</li></a>
+      </ul>
+    </div>
 
-ul.across_the_top > a {
-	display: inline-block;
-	max-width: 10%;
-	float: right;
-	text-align: center;
-	background-color: #5A9BD5;
-	padding: 15px 15px 15px 15px;
-	margin-right: 15px;
-}
-
-ul.dropdown > a {
-	display: block;
-	width: 125px;
-	background-color: #5A9BD5;
-	padding: 15px 15px 15px 15px;
-	margin-bottom: 15px;
-	clear: left;
-}
-</style>
-<ul class="across_the_top">
-	<a href="privacy_and_security.html"><li>Privacy &amp; Security</li></a>
-	<a href="manage_account.html"><li>Manage My Account</li></a>
-	<a href="setup.html"><li>Setting Up My System</li></a>
-	<a href="https://nalarihealth.zendesk.com/hc/en-us"><li>Support <br> Chat Now</li></a>
-</ul>
-<div class="greeting">
-	<h2>Welcome, Nancy!</h2>
-	<h5>You are now logged into the Nalari Health, HIPPA-compliant remote care environment.</h5>
-</div>
-<ul class="dropdown">
-	<a href="my_patients.html"><li>My Patients</li></a>
-	<a href="my_appointments.html"><li>My Appointments</li></a>
-	<a href="my_notes.html"><li>My Notes</li></a>
-</ul>
-
-<ul class="tile_3">
-	<a href="http://nalarinetwork.com">
-		<h3>Talk to a Doctor Now</h3>
-		<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
-	</a>
-	<a href="enroll.html">
-		<h3>Enroll Your Patient</h3>
-		<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
-	</a>
-	<a href="remote_care_services.html">
-		<h3>Remote Care Services</h3>
-		<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
-	</a>
-	<a href="biometrics.html">
-		<h3>Patient Biometrics</h3>
-		<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
-	</a>
-	<a href="training_and_resources.html">
-		<h3>Training and Resources</h3>
-		<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
-	</a>
-	<a href="qi_risk_management.html">
-		<h3>Quality Improvement / Risk Management</h3>
-		<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
-	</a>
-</ul>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- <script src="js/bootstrap.min.js"></script> -->
+  </body>
+</html>
