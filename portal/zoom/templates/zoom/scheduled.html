@@ -1,0 +1,9 @@
+{% extends 'header.html' %}
+{% block title %}Appointment Scheduled!{% endblock %}
+{% block content %}
+<div class='jumbotron'>
+	<h3>Your appointment has been scheduled!</h3>
+	<h5>Go to this address for your appointment: {{ start }}</h5>
+	<h5>(We sent you an email just in case you forget!)</h5>
+</div>
+{% endblock %}

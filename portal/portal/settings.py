@@ -36,7 +36,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user_auth',
+    'accounts',
+    'home',
+    'zoom',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -76,6 +78,18 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+LOGIN_URL = '/accounts/login/'
+
+LOGIN_REDIRECT_URL = "/home/"
+
+TEMPLATE_DIRS = ('templates/',)
+
+STATICFILES_DIRS = ('static/',)
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 
 # Static files (CSS, JavaScript, Images)

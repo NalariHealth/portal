@@ -1,0 +1,50 @@
+{% extends 'default.html' %}
+{% block title %}Login{% endblock %}
+{% block body %}
+<style>
+form {
+	margin-top: 40%;
+	display: block;
+	padding: 10px;
+	border-radius: 15px;
+	background-color: #b4b4b4;
+	text-align: center;
+}
+input[type=username] {
+	width: 100%;
+}
+input[type=password] {
+	width: 100%;
+	margin-top: 10px;
+}
+input[type=radio] {
+	margin-top: 20px;
+}
+</style>
+<div class='col-md-4'></div>
+<div class='col-md-4'>
+	<form action="{% url 'accounts:login' %}" method="POST">
+		{% csrf_token %}
+		<h3>Login:</h3>
+		<!-- <table>
+			<tr>
+				<td>
+			</tr>
+		</table> -->
+		<div class='col-md-6'>
+			<label for='username'>Username: </label><br>
+			<label for='password' style='margin-top: 10px;'>Password: </label>
+		</div>
+		<div class='col-md-6'>
+			<input name='username' id='username' type='text'><br>
+			<input name='password' id='password' type='password'>
+		</div>
+		<br>
+		<input type='radio' name='docpat' value='Doctor' id='doc'><label for='doc'>Doctor</label>
+		<input type='radio' name='docpat' value='Patient' id='pat' checked><label for='pat'>Patient</label><br><br>
+		<input type="submit">
+		<input type="hidden" name="next" value="{{ next }}" >
+	</form>
+</div>
+<div class='col-md-4'></div>
+{% endblock %}

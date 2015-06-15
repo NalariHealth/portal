@@ -1,0 +1,16 @@
+{% extends 'header.html' %}
+{% block title %}Appointment Ready!{% endblock %}
+{% block content %}
+<div class='jumbotron'>
+<h3>Zoom meeting created!</h3>
+<p>{{ start }}</p>
+</div>
+<input type='button' onclick='begin()' value='Begin Appointment' id='begin'/>
+
+<script>
+	function begin() {
+		window.location.assign('{{ start }}')
+	}
+</script>
+
+{% endblock %}
