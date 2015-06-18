@@ -1,6 +1,9 @@
 {% extends 'header.html' %}
 {% block title %}Select a Doctor{% endblock %}
 {% block content %}
+<!-- doctor list --> 
+{% if doczoom == 'doc' %}
+<!-- doctors are available --> 
 {% if docs_avail %}
 <style>
 input[type=radio] {
@@ -36,7 +39,30 @@ input[type=radio]:hover + label:hover {
 	<input type='submit' value='Go!'></input>
 </form>
 {% else %}
-<h3>There are currently no doctors available</h3>
-<h5>Please try back again later</h5>
+<!-- there are no doctors available --> 
+<h3>There are currently no doctors available.</h3>
+<h5>Please try back again later.</h5>
+{% endif %}
+{% else %}
+<!-- zoom meeting -->
+<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+<iframe id='zoom_frame' src='{{ start }}'></iframe>
+<script>
+    var zf = d3.select('#zoom_frame');
+    var height = parseInt(window.innerHeight - parseInt(d3.select('#header').style('height')));
+    console.log(height);
+    var width = window.innerWidth;
+    console.log(width);
+    zf.attr('width', width).attr('height', height);
+
+    function resize() {
+        console.log('resizing');
+        height = parseInt(window.innerHeight - parseInt(d3.select('#header').style('height')));
+        width = window.innerWidth;
+        zf.attr('width', width).attr('height', height);
+    }
+
+    window.onresize = resize;
+</script>
 {% endif %}
 {% endblock %}

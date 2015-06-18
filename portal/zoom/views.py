@@ -44,32 +44,56 @@ def scheduled(request):
 		return render(request, 'zoom/error.html', context)
 
 @login_required
-def interzoom(request):
-	doctor_list = Doctor.objects.filter(online=True)
-	docs_avail = (len(doctor_list) > 0)
-	context = {'doctor_list' : doctor_list, 'docs_avail' : docs_avail}
-	return render(request, 'zoom/interzoom.html', context)
-
-@login_required
 def zoom(request):
-	api_key = '_U9QcLjZQuCJQfRLvREdxQ'
-	api_secret = 'H8CjFAZfkH6hTiKCzF9rDG2mDemFeGI7LnWf'
-
-	username = None
-	zoom_id = None
-	context = {}
-
-	zoom_id = Patient.objects.get(user=User.objects.get(username=request.user.username)).zoom_id
-
-	url = 'https://api.zoom.us/v1/meeting/create?api_key=' + api_key + '&api_secret=' + api_secret + '&data_type=JSON&host_id=' + zoom_id + '&topic=instappointment&type=1' 
-	r = requests.post(url)
-
-	if 'start_url' in r.json():
-		start_url = r.json()['start_url']
-		doc_user = User.objects.get(username=request.POST['doctor'])
-		# doc_user.email_user('Instappointment Request', 'A patient is waiting for you at the following address: ' + r.json()['join_url'])
-		context = {'start' : start_url}
+	if request.method == 'GET':
+		doctor_list = Doctor.objects.filter(online=True)
+		docs_avail = (len(doctor_list) > 0)
+		context = {'doczoom' : 'doc' , 'doctor_list' : doctor_list, 'docs_avail' : docs_avail}
 		return render(request, 'zoom/zoom.html', context)
-	else:
-		context = {'info' : r.json()}
-		return render(request, 'zoom/error.html', context)
+	elif request.method == 'POST':
+		api_key = '_U9QcLjZQuCJQfRLvREdxQ'
+		api_secret = 'H8CjFAZfkH6hTiKCzF9rDG2mDemFeGI7LnWf'
+
+		username = None
+		zoom_id = None
+		context = {}
+
+		zoom_id = Patient.objects.get(user=User.objects.get(username=request.user.username)).zoom_id
+
+		url = 'https://api.zoom.us/v1/meeting/create?api_key=' + api_key + '&api_secret=' + api_secret + '&data_type=JSON&host_id=' + zoom_id + '&topic=instappointment&type=1' 
+		r = requests.post(url)
+
+		if 'start_url' in r.json():
+			start_url = r.json()['start_url']
+			doc_user = User.objects.get(username=request.POST['doctor'])
+			# doc_user.email_user('Instappointment Request', 'A patient is waiting for you at the following address: ' + r.json()['join_url'])
+			context = {'doczoom' : 'zoom', 'start' : start_url}
+			return render(request, 'zoom/zoom.html', context)
+		else:
+			context = {'info' : r.json()}
+			return render(request, 'zoom/error.html', context)
+
+
+# @login_required
+# def zoom(request):
+# 	api_key = '_U9QcLjZQuCJQfRLvREdxQ'
+# 	api_secret = 'H8CjFAZfkH6hTiKCzF9rDG2mDemFeGI7LnWf'
+
+# 	username = None
+# 	zoom_id = None
+# 	context = {}
+
+# 	zoom_id = Patient.objects.get(user=User.objects.get(username=request.user.username)).zoom_id
+
+# 	url = 'https://api.zoom.us/v1/meeting/create?api_key=' + api_key + '&api_secret=' + api_secret + '&data_type=JSON&host_id=' + zoom_id + '&topic=instappointment&type=1' 
+# 	r = requests.post(url)
+
+# 	if 'start_url' in r.json():
+# 		start_url = r.json()['start_url']
+# 		doc_user = User.objects.get(username=request.POST['doctor'])
+# 		# doc_user.email_user('Instappointment Request', 'A patient is waiting for you at the following address: ' + r.json()['join_url'])
+# 		context = {'start' : start_url}
+# 		return render(request, 'zoom/zoom.html', context)
+# 	else:
+# 		context = {'info' : r.json()}
+# 		return render(request, 'zoom/error.html', context)
