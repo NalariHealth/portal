@@ -34,3 +34,7 @@ def my_auth(request):
 		print 'GET'
 		context = {}
 		return render(request, 'accounts/login.html', context)
+
+def config(request):
+	context = {}
+	return render(request, 'accounts/config.html', context)

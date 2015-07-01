@@ -9,7 +9,6 @@ from django.contrib.auth.models import User
 import requests
 
 # Create your views here.
-@login_required
 def schedule(request):
 	context = {}
 	return render(request, 'zoom/schedule.html', context)
@@ -58,7 +57,7 @@ def zoom(request):
 		zoom_id = None
 		context = {}
 
-		zoom_id = Patient.objects.get(user=User.objects.get(username=request.user.username)).zoom_id
+		# zoom_id = Patient.objects.get(user=User.objects.get(username=request.user.username)).zoom_id
 
 		url = 'https://api.zoom.us/v1/meeting/create?api_key=' + api_key + '&api_secret=' + api_secret + '&data_type=JSON&host_id=' + zoom_id + '&topic=instappointment&type=1' 
 		r = requests.post(url)

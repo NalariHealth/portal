@@ -1,6 +1,7 @@
 {% extends 'header.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
+<div ng-app="home_page_app" ng-controller="home_page_controler">
     <style>
       a {
         color: #404040;
@@ -26,56 +27,65 @@
       }
     </style>
     <div class="jumbotron">
-      <h1>Hello, {{ first_name }}!</h1>
+      <h1>Hello, {{ user.user.get_short_name }}!</h1>
       <p>You are now logged into the Nalari Health, HIPPA-compliant remote care environment.</p>
     </div>
     
 
     <div class="col-md-9">
       <div class="col-md-4">
-        <a href="https://nalarinetwork.com/home.htm">
-          <h3>Talk to a Doctor Now</h3>
-          <p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
+        <a {{ user.settings.tile_1.a_interior }} ng-if="'{{ user.settings.tile_1.title }}' != ''">
+          <h3>{{ user.settings.tile_1.title }}</h3>
+          <p>{{ user.settings.tile_1.description }}</p>
         </a>
       </div>
       <div class="col-md-4">
-        <a href="enroll.html">
-          <h3>Enroll Your Patient</h3>
-          <p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
+        <a {{ user.settings.tile_2.a_interior }} ng-if="'{{ user.settings.tile_2.title }}' != ''">
+          <h3>{{ user.settings.tile_2.title }}</h3>
+          <p>{{ user.settings.tile_2.description }}</p>
         </a>
       </div>
       <div class="col-md-4">
-        <a href="remote_care_services.html">
-          <h3>Remote Care Services</h3>
-          <p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
+        <a {{ user.settings.tile_3.a_interior }} ng-if="'{{ user.settings.tile_3.title }}' != ''">
+          <h3>{{ user.settings.tile_3.title }}</h3>
+          <p>{{ user.settings.tile_3.description }}</p>
         </a>
       </div>
       <div class="col-md-4">
-        <a href="biometrics.html">
-          <h3>Patient Biometrics</h3>
-          <p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
+        <a {{ user.settings.tile_4.a_interior }} ng-if="'{{ user.settings.tile_4.title }}' != ''">
+          <h3>{{ user.settings.tile_4.title }}</h3>
+          <p>{{ user.settings.tile_4.description }}</p>
         </a>
       </div>
       <div class="col-md-4">
-        <a href="training_and_resources.html">
-          <h3>Training &amp; Resources</h3>
-          <p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
+        <a {{ user.settings.tile_5.a_interior }} ng-if="'{{ user.settings.tile_5.title }}' != ''">
+          <h3>{{ user.settings.tile_5.title }}</h3>
+          <p>{{ user.settings.tile_5.description }}</p>
         </a>
       </div>
       <div class="col-md-4">
-        <a href="qi_risk_management.html">
-          <h3>Quality Improvement / Risk Management</h3>
-          <p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, set do eiusmond temp or incididunt</p>
+        <a {{ user.settings.tile_6.a_interior }} ng-if="'{{ user.settings.tile_6.title }}' != ''">
+          <h3>{{ user.settings.tile_6.title }}</h3>
+          <p>{{ user.settings.tile_6.description }}</p>
         </a>
       </div>
     </div>
     <div class="col-md-3">
       <ul>
-        <a href="my_patients.html"><li>My Patients</li></a>
-        <a href="my_appointments.html"><li>My Appointments</li></a>
-        <a href="my_notes.html"><li>My Notes</li></a>
-        <a href="{% url 'zoom:zoom' %}"><li>Quick Chat</li></a>
-        <a href="{% url 'zoom:schedule' %}"><li>Schedule an Appointment</li></a>
+        <a {{ user.settings.list_option_1.a_interior }} ng-if="'{{ user.settings.list_option_1.title }}' != ''"><li>{{ user.settings.list_option_1.title }}</li></a>
+        <a {{ user.settings.list_option_2.a_interior }} ng-if="'{{ user.settings.list_option_2.title }}' != ''"><li>{{ user.settings.list_option_2.title }}</li></a>
+        <a {{ user.settings.list_option_3.a_interior }} ng-if="'{{ user.settings.list_option_3.title }}' != ''"><li>{{ user.settings.list_option_3.title }}</li></a>
+        <a {{ user.settings.list_option_4.a_interior }} ng-if="'{{ user.settings.list_option_4.title }}' != ''"><li>{{ user.settings.list_option_4.title }}</li></a>
+        <a {{ user.settings.list_option_5.a_interior }} ng-if="'{{ user.settings.list_option_5.title }}' != ''"><li>{{ user.settings.list_option_5.title }}</li></a>
+        <a {{ user.settings.list_option_6.a_interior }} ng-if="'{{ user.settings.list_option_6.title }}' != ''"><li>{{ user.settings.list_option_6.title }}</li></a>
       </ul>
     </div>
+    <script>
+    var app = angular.module('home_page_app', []);
+    app.controller('home_page_controler', function($scope) {
+        $scope.exists = function(v) {
+          return (v != null);
+        }
+    });
+    </script>
 {% endblock %}

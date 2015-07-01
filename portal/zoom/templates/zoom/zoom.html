@@ -34,7 +34,7 @@ input[type=radio]:hover + label:hover {
 <form action="{% url 'zoom:zoom' %}" method="POST">
 	{% csrf_token %}
 	{% for doctor in doctor_list %}
-	<input type='radio' name='doctor' value='{{ doctor.user.username }}' id='{{ doctor.user.username }}'><label for='{{ doctor.user.username }}'>{{ doctor }}</label><br>
+	<input type='radio' name='doctor' value='{{ doctor.gen_user.user.username }}' id='{{ doctor.gen_user.user.username }}'><label for='{{ doctor.gen_user.user.username }}'>{{ doctor }}</label><br>
 	{% endfor %}
 	<input type='submit' value='Go!'></input>
 </form>
