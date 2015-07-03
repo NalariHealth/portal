@@ -7,26 +7,34 @@ class tile_option(models.Model):
 	title = models.CharField(max_length=50)
 	description = models.CharField(max_length=200)
 	a_interior = models.CharField(max_length=300)
+	def __str__(self):
+		return self.title
 
 class list_option(models.Model):
 	id = models.AutoField(primary_key=True)
 	title = models.CharField(max_length=20)
 	a_interior = models.CharField(max_length=300)
+	def __str__(self):
+		return self.title
 
 class settings(models.Model):
 	id = models.AutoField(primary_key=True)
-	tile_1 = models.ForeignKey(tile_option, null=True, related_name='tile_1')
-	tile_2 = models.ForeignKey(tile_option, null=True, related_name='tile_2')
-	tile_3 = models.ForeignKey(tile_option, null=True, related_name='tile_3')
-	tile_4 = models.ForeignKey(tile_option, null=True, related_name='tile_4')
-	tile_5 = models.ForeignKey(tile_option, null=True, related_name='tile_5')
-	tile_6 = models.ForeignKey(tile_option, null=True, related_name='tile_6')
-	list_option_1 = models.ForeignKey(list_option, null=True, related_name='list_option_1')
-	list_option_2 = models.ForeignKey(list_option, null=True, related_name='list_option_2')
-	list_option_3 = models.ForeignKey(list_option, null=True, related_name='list_option_3')
-	list_option_4 = models.ForeignKey(list_option, null=True, related_name='list_option_4')
-	list_option_5 = models.ForeignKey(list_option, null=True, related_name='list_option_5')
-	list_option_6 = models.ForeignKey(list_option, null=True, related_name='list_option_6')
+	tile_1 = models.ForeignKey(tile_option, null=True, related_name='tile_1', on_delete=models.SET_NULL)
+	tile_2 = models.ForeignKey(tile_option, null=True, related_name='tile_2', on_delete=models.SET_NULL)
+	tile_3 = models.ForeignKey(tile_option, null=True, related_name='tile_3', on_delete=models.SET_NULL)
+	tile_4 = models.ForeignKey(tile_option, null=True, related_name='tile_4', on_delete=models.SET_NULL)
+	tile_5 = models.ForeignKey(tile_option, null=True, related_name='tile_5', on_delete=models.SET_NULL)
+	tile_6 = models.ForeignKey(tile_option, null=True, related_name='tile_6', on_delete=models.SET_NULL)
+	list_option_1 = models.ForeignKey(list_option, null=True, related_name='list_option_1', on_delete=models.SET_NULL)
+	list_option_2 = models.ForeignKey(list_option, null=True, related_name='list_option_2', on_delete=models.SET_NULL)
+	list_option_3 = models.ForeignKey(list_option, null=True, related_name='list_option_3', on_delete=models.SET_NULL)
+	list_option_4 = models.ForeignKey(list_option, null=True, related_name='list_option_4', on_delete=models.SET_NULL)
+	list_option_5 = models.ForeignKey(list_option, null=True, related_name='list_option_5', on_delete=models.SET_NULL)
+	list_option_6 = models.ForeignKey(list_option, null=True, related_name='list_option_6', on_delete=models.SET_NULL)
+	def __str__(self):
+		tiles = [self.tile_1, self.tile_2, self.tile_3, self.tile_4, self.tile_5, self.tile_6]
+		lists = [self.list_option_1, self.list_option_2, self.list_option_3, self.list_option_4, self.list_option_5, self.list_option_6]
+		return ' '.join(tiles) + '\n' + ' '.join(lists)
 
 ## USERS ##
 class gen_user(models.Model):
@@ -65,3 +73,5 @@ class c_p_rel(models.Model):
 	id = models.AutoField(primary_key=True)
 	caregiver = models.ForeignKey(Caregiver)
 	patient = models.ForeignKey(Patient)
+	def __str__(self):
+		return 'Patient: ' + str(patient) +' / Caregiver: ' + str(caregiver)

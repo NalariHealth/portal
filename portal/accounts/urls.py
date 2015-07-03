@@ -1,7 +1,8 @@
 from django.conf.urls import patterns, include, url
 import django.contrib.auth.views
 
-from . import views 
+# from . import views 
+import views
 from home import views as homeviews
 
 urlpatterns = patterns('',

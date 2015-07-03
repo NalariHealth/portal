@@ -1,7 +1,74 @@
 {% extends 'header.html' %}
 {% block title %}Manage My Account{% endblock %}
 {% block content %}
-<table>
-	
-</table>
+{% load template_filters %}
+<style>
+  a {
+    color: #404040;
+  }
+  ul.nav navbar-nav navbar-right > li {
+    text-align: center;
+  }
+  div.col-md-11 {
+  	display: block;
+    /*min-height: 200px;*/
+    padding: 15px 15px 15px 15px;
+    margin: 10px -5px 10px -5px;
+    background-color: #dbdbdb;
+  }
+  div.col-md-3 > ul > li {
+    display: block;
+    margin: 15px 15px 15px -15px;
+    padding: 15px 15px 15px 15px;
+    background-color: #dbdbdb;
+  }
+  label.list_option_label {
+  	font-size: 10px;
+  	margin: 0px;
+  }
+  .list_option_title {
+  	margin: 0px;
+  }
+  input[type='submit'] {
+  	height: 50px;
+  	width: 100px;
+  	margin: 10px;
+  }
+  #submit_div {
+  	text-align: center;
+  	clear: left;
+  }
+</style>
+<form method='post' action="{% url 'accounts:config' %}">
+  {% csrf_token %}
+	<div class="col-md-9">
+		{% for i in num_tiles %}
+	  		<div class="col-md-4">
+	  			<div class='col-md-11'>
+		    		<h3>Tile {{ i | add:1 }}</h3>
+		    		{% for tile_option in tile_options %}
+		    			<label class='tile_option_label'><input type='radio' name="tile_{{ i|add:1 }}" value='{{ tile_option.title }}'{% if settings.tiles|lookup:i == tile_option.title %} checked {% endif %}/>   {{ tile_option.title }}</label><br>
+		    		{% endfor %}
+		    		<label class='tile_option_label'><input type='radio' name="tile_{{ i|add:1 }}" value='none'{% if settings.tiles|lookup:i == "none" %} checked {% endif %}/>   None</label>
+		    	</div>
+	  		</div>
+  		{% endfor %}
+  		<div id='submit_div'>
+  			<input type='submit' value='Save'/>
+  		</div>
+	</div>
+	<div class="col-md-3">
+  		<ul>
+  			{% for i in num_list_options %}
+	  			<li>
+		  			<h5 class='list_option_title'>List Item {{ i | add:1 }}</h5>
+		  			{% for list_option in list_options %}
+		  				<label class='list_option_label'><input type='radio' name="list_option_{{ i|add:1 }}" value='{{ list_option.title }}'{% if settings.list_options|lookup:i == list_option.title %} checked {% endif %}/>   {{ list_option.title }}</label>
+		  			{% endfor %}
+		  			<label class='list_option_label'><input type='radio' name="list_option_{{ i|add:1 }}" value='none'{% if settings.list_options|lookup:i == "none" %} checked {% endif %}/>   None</label>
+		  		</li>
+	  		{% endfor %}
+  		</ul>
+	</div>
+</form>
 {% endblock %}

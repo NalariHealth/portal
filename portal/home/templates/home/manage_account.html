@@ -1,8 +1,54 @@
-<html>
-<head>
-	<title>Manage My Account</title>
-</head>
-<body>
-	<h1>Manage My Account</h1>
-</body>
-</html>
+{% extends 'header.html' %}
+{% block title %}Manage My Account{% endblock %}
+{% block content %}
+<style>
+  a {
+    color: #404040;
+  }
+  ul.nav navbar-nav navbar-right > li {
+    text-align: center;
+  }
+  div.col-md-9 > div.col-md-4 {
+    margin: 10px -5px 10px -5px;
+  }
+  div.col-md-9 > div.col-md-4 > a {
+    display: block;
+    min-height: 200px;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    background-color: #dbdbdb;
+  }
+  div.col-md-3 > ul > a > li {
+    display: block;
+    margin: 15px 15px 15px -15px;
+    padding: 15px 15px 15px 15px;
+    background-color: #dbdbdb;
+  }
+</style>
+<form>
+	<div class="col-md-9">
+		{% for x in "xxxxxx" %}
+  		<div class="col-md-4">
+    		<h3>Tile {{ forloop.counter1 }}</h3>
+    		{% for tile_option in tile_options %}
+    		<label>{{ tile_option.title }}<input type='radio' name="{{ 'tile' + forloop.counter1 }}" value='{{ tile_option.title }}'/></label>
+    		{% endfor %}
+    		<label>None<input type='radio' name="{{ 'tile' + forloop.counter1 }}" value='none'/></label>
+  		</div>
+  		{% endfor %}
+	</div>
+	<div class="col-md-3">
+  		<ul>
+  			{% for x in "xxxxxx" %}
+  			<li>
+	  			<h5>List Item {{ forloop.counter1 }}</h5>
+	  			{% for list_option in list_options %}
+	  			<label>{{ list_option.title }}<input type='radio' name="{{ 'list_option' + forloop.counter1 }}" value='{{ list_option.title }}'/></label>
+	  			{% endfor %}
+	  			<label>None<input type='radio' name="{{ 'list_option' + forloop.counter1 }}" value='none'/></label>
+	  		</li>
+	  		{% endfor %}
+  		</ul>
+	</div>
+</form>
+{% endblock %}
