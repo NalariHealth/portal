@@ -2,10 +2,14 @@
 {% load staticfiles %}
 {% block body %}
     <style>
-    .non-functional {
-      color: white !important;
+    .footer_dividers:hover {
+      background-color: #ffffff !important;
     }
     </style>
+    <div id="blue_line" style="width:100%;height:30px;background-color:#3F6FDD"></div>
+    <div style="width:100%;height:10px;"></div>
+    <div style="width:100%;height:20px;background-color:#EDB94F"></div>
+    <!-- <div style="width:100%;height:10px;"></div> -->
     <nav id='header' class="navbar navbar-default">
       <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -22,10 +26,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="https://nalarihealth.zendesk.com/hc/en-us">Support<br>Chat Now</a></li>
-        <li><a href="setup.html" class='non-functional'>Setting Up My System</a></li>
+        <li><a href="https://nalarihealth.zendesk.com/hc/en-us">Support Chat Now</a></li>
+        <li><a>|</a></li>
         <li><a href="{% url 'accounts:config' %}">Manage My Account</a></li>
-        <li><a href="privacy_and_security.html" class='non-functional'>Privacy &amp; Security</a></li> 
+        <li><a>|</a></li>
         <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -33,4 +37,29 @@
 </nav>
 {% block content %}
 {% endblock %}
+<br>
+<!-- <div style="width:100%"> -->
+<nav style="clear:both;">
+        <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="privacy_and_security.html" class='non-functional'>Privacy &amp; Security</a></li> 
+          <li class="footer_dividers"><a>|</a></li>
+          <li><a href="setup.html" class='non-functional'>Setting Up My System</a></li>
+          <li class="footer_dividers"><a>|</a></li>
+          <li><a href="https://nalarihealth.com/">Contact Nalari Health</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+    </nav>
+<!-- </div> -->
 {% endblock %}

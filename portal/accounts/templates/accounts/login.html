@@ -1,13 +1,14 @@
 {% extends 'default.html' %}
+{% load staticfiles %}
 {% block title %}Login{% endblock %}
 {% block body %}
 <style>
 form {
-	margin-top: 40%;
+	/*margin-top: 40%;*/
 	display: block;
 	padding: 10px;
 	border-radius: 15px;
-	background-color: #b4b4b4;
+	background-color: #FCDD28;
 	text-align: center;
 }
 input[type=username] {
@@ -20,9 +21,24 @@ input[type=password] {
 input[type=radio] {
 	margin-top: 20px;
 }
+input[type=submit] {
+	/*margin-top: 20px;*/
+	margin: 20px;
+}
+#center {
+	text-align: center;
+}
+#nh_logo {
+	margin-top: 25%;
+	margin-bottom: 15px;
+}
+body {
+	background-color: #86C7FC;
+}
 </style>
 <div class='col-md-4'></div>
-<div class='col-md-4'>
+<div class='col-md-4' id="center">
+	<img src="{% static 'img/logo.png' %}" id='nh_logo'/>
 	<form action="{% url 'accounts:login' %}" method="POST">
 		{% csrf_token %}
 		<h3>Login:</h3>
@@ -40,11 +56,13 @@ input[type=radio] {
 			<input name='password' id='password' type='password'>
 		</div>
 		<br>
-		<input type='radio' name='docpat' value='Doctor' id='doc'><label for='doc'>Doctor</label>
-		<input type='radio' name='docpat' value='Patient' id='pat' checked><label for='pat'>Patient</label><br><br>
-		<input type="submit">
+		<!-- <input type='radio' name='docpat' value='Doctor' id='doc'><label for='doc'>Doctor</label>
+		<input type='radio' name='docpat' value='Patient' id='pat' checked><label for='pat'>Patient</label><br><br> -->
+		<br>
+		<input type="submit" class='btn-primary btn' value='Login'>
 		<input type="hidden" name="next" value="{{ next }}" >
 	</form>
+	<div class="non-funcational" style="text-align:left;"><a href="">Lost your password?</a></div>
 </div>
 <div class='col-md-4'></div>
 {% endblock %}

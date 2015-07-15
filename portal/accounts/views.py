@@ -13,19 +13,19 @@ def my_auth(request):
 		print 'POST'
 		password = request.POST['password']
 		username = request.POST['username']
-		docpat = request.POST['docpat']
+		# docpat = request.POST['docpat']
 		next = request.POST['next']
 		user = authenticate(username=username, password=password)
 		if user is not None:
 			if user.is_active:
 				login(request, user)
 				print 'logged in'
-				if docpat == 'doc':
-					print 'is doc'
-					doc = get_object_or_404(Doctor, pk=user)
-					doc.online = True
-					doc.save()
-				print 'returning view'
+				# if docpat == 'doc':
+				# 	print 'is doc'
+				# 	doc = get_object_or_404(Doctor, pk=user)
+				# 	doc.online = True
+				# 	doc.save()
+				# print 'returning view'
 				return homeviews.home(request)
 			else:
 				return HttpResponse('DISABLED ACCOUNT')
