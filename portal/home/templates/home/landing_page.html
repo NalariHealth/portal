@@ -2,38 +2,7 @@
 {% load staticfiles %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<!-- <div ng-app="home_page_app" ng-controller="home_page_controler"> -->
     <style>
-      /*a {
-        color: #404040;
-      }
-      ul.nav navbar-nav navbar-right > li {
-        text-align: center;
-      }
-      div.col-md-9 > div.col-md-4 {
-        margin: 10px -5px 10px -5px;
-      }
-      div.col-md-9 > div.col-md-4 > a {
-        display: block;
-        min-height: 200px;
-        padding: 15px 15px 15px 15px;
-        text-align: center;
-        background-color: #dbdbdb;
-      }
-      div.col-md-3 > ul > a > li {
-        display: block;
-        margin: 15px 15px 15px -15px;
-        padding: 15px 15px 15px 15px;
-        background-color: #dbdbdb;
-      }*/
-     /* .left_col {
-        background-color: #ED3A1C;
-        min-height: 150px;
-      }*/
-      /*.right_col {
-        min-height: 150px;
-        background-color: #5874ED;
-      }*/
       .list_icon {
         height: 40px;
         margin: 10px;
@@ -67,9 +36,10 @@
       }
     </style>
     <div class="col-md-3 left_col">
-      <img src="" alt="Picture" style="width:50%;min-height: 150px;float:left;"/>
+      <img style="width:50%;max-height: 150px;float:left;margin:4px;" alt="Picture" src="{{ user.picture.picfile.url }}">
+      <!-- <img src="" alt="Picture" style="width:50%;min-height: 150px;float:left;"/> -->
       <h5>Welcome, {{ user.user.get_short_name }}!</h5>
-      <p>You are now logged in to the Nalari Healt, HIPPA-compliant remote care environment.</p>
+      <p>You are now logged in to the Nalari Health, HIPPA-compliant remote care environment.</p>
       <div style="width:100%;clear:both;background-color:#3F6FDD;height:5px;"></div>
       <ul>
         <li class="left_col_li"><a href="" class='non-functional'><img src="{% static 'icon/calendar.png' %}" class='list_icon'/>See Your Calendar</a></li>
@@ -120,66 +90,4 @@
       </div>
       <div style="width:100%;height:5px;background-color:#D9D9D9;clear:both;"></div>
     </div>
-   <!--  <div class="jumbotron">
-      <h1>Hello, {{ user.user.get_short_name }}!</h1>
-      <p>You are now logged into the Nalari Health, HIPPA-compliant remote care environment.</p>
-    </div>
-    
-
-    <div class="col-md-9">
-      <div class="col-md-4">
-        <a {{ user.settings.tile_1.a_interior }} ng-if="'{{ user.settings.tile_1.title }}' != ''">
-          <h3>{{ user.settings.tile_1.title }}</h3>
-          <p>{{ user.settings.tile_1.description }}</p>
-        </a>
-      </div>
-      <div class="col-md-4">
-        <a {{ user.settings.tile_2.a_interior }} ng-if="'{{ user.settings.tile_2.title }}' != ''">
-          <h3>{{ user.settings.tile_2.title }}</h3>
-          <p>{{ user.settings.tile_2.description }}</p>
-        </a>
-      </div>
-      <div class="col-md-4">
-        <a {{ user.settings.tile_3.a_interior }} ng-if="'{{ user.settings.tile_3.title }}' != ''">
-          <h3>{{ user.settings.tile_3.title }}</h3>
-          <p>{{ user.settings.tile_3.description }}</p>
-        </a>
-      </div>
-      <div class="col-md-4">
-        <a {{ user.settings.tile_4.a_interior }} ng-if="'{{ user.settings.tile_4.title }}' != ''">
-          <h3>{{ user.settings.tile_4.title }}</h3>
-          <p>{{ user.settings.tile_4.description }}</p>
-        </a>
-      </div>
-      <div class="col-md-4">
-        <a {{ user.settings.tile_5.a_interior }} ng-if="'{{ user.settings.tile_5.title }}' != ''">
-          <h3>{{ user.settings.tile_5.title }}</h3>
-          <p>{{ user.settings.tile_5.description }}</p>
-        </a>
-      </div>
-      <div class="col-md-4">
-        <a {{ user.settings.tile_6.a_interior }} ng-if="'{{ user.settings.tile_6.title }}' != ''">
-          <h3>{{ user.settings.tile_6.title }}</h3>
-          <p>{{ user.settings.tile_6.description }}</p>
-        </a>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <ul>
-        <a {{ user.settings.list_option_1.a_interior }} ng-if="'{{ user.settings.list_option_1.title }}' != ''"><li>{{ user.settings.list_option_1.title }}</li></a>
-        <a {{ user.settings.list_option_2.a_interior }} ng-if="'{{ user.settings.list_option_2.title }}' != ''"><li>{{ user.settings.list_option_2.title }}</li></a>
-        <a {{ user.settings.list_option_3.a_interior }} ng-if="'{{ user.settings.list_option_3.title }}' != ''"><li>{{ user.settings.list_option_3.title }}</li></a>
-        <a {{ user.settings.list_option_4.a_interior }} ng-if="'{{ user.settings.list_option_4.title }}' != ''"><li>{{ user.settings.list_option_4.title }}</li></a>
-        <a {{ user.settings.list_option_5.a_interior }} ng-if="'{{ user.settings.list_option_5.title }}' != ''"><li>{{ user.settings.list_option_5.title }}</li></a>
-        <a {{ user.settings.list_option_6.a_interior }} ng-if="'{{ user.settings.list_option_6.title }}' != ''"><li>{{ user.settings.list_option_6.title }}</li></a>
-      </ul>
-    </div> -->
-    <!--<script>
-    // var app = angular.module('home_page_app', []);
-    // app.controller('home_page_controler', function($scope) {
-    //     $scope.exists = function(v) {
-    //       return (v != null);
-    //     }
-    // });
-    </script>-->
 {% endblock %}

@@ -3,8 +3,10 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect
 
 from home import views as homeviews
-from models import Doctor, Patient, gen_user, tile_option, list_option, settings
+from models import Doctor, Patient, gen_user, tile_option, list_option, settings, picture
 from django.contrib.auth.models import User 
+from forms import PictureForm
+from django.core.urlresolvers import reverse
 
 # Create your views here.
 
@@ -97,3 +99,30 @@ def config(request):
 		gu.save()
 		request.method = 'GET'
 		return config(request)
+
+def photo(request):
+	context = {}
+	gu = gen_user.objects.get(user=request.user)
+	if request.method == 'POST':
+		
+		form = PictureForm(request.POST, request.FILES)
+		if form.is_valid():
+			newpic = picture(picfile=request.FILES['picfile'])
+			newpic.save()
+			gu.picture = newpic
+			gu.save()
+			return homeviews.home
+	context['picture'] = gu.picture
+	context['form'] = PictureForm()
+	return render(request, 'accounts/upload_photo.html', context)
+
+
+
+
+
+
+
+
+
+
+

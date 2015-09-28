@@ -37,9 +37,14 @@ class settings(models.Model):
 		return ' '.join(tiles) + '\n' + ' '.join(lists)
 
 ## USERS ##
+class picture(models.Model):
+	picfile = models.FileField(upload_to='user_photos')
+
+
 class gen_user(models.Model):
 	user = models.ForeignKey(User, unique=True)
 	settings = models.ForeignKey(settings, default=1)
+	picture = models.ForeignKey(picture, null=True)
 	def __str__(self):
 		return self.user.get_full_name()
 
