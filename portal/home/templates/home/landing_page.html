@@ -36,8 +36,7 @@
       }
     </style>
     <div class="col-md-3 left_col">
-      <img style="width:50%;max-height: 150px;float:left;margin:4px;" alt="Picture" src="{{ user.picture.picfile.url }}">
-      <!-- <img src="" alt="Picture" style="width:50%;min-height: 150px;float:left;"/> -->
+      <a href="{% url 'accounts:photo' %}"><img style="width:50%;max-height: 150px;float:left;margin:4px;" alt="Picture" src="{{ user.picture.picfile.url }}"></a>
       <h5>Welcome, {{ user.user.get_short_name }}!</h5>
       <p>You are now logged in to the Nalari Health, HIPPA-compliant remote care environment.</p>
       <div style="width:100%;clear:both;background-color:#3F6FDD;height:5px;"></div>
