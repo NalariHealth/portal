@@ -16,13 +16,8 @@
 		<!-- Upload form. Note enctype attribute! -->
 		<form action="{% url 'accounts:photo' %}" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
-			<p>{{ form.non_field_errors }}</p>
-			<p>{{ form.picfile.label_tag }} {{ form.picfile.help_text }}</p>
-			<p>
-				{{ form.picfile.errors }}
-				{{ form.picfile }}
-			</p>
-			<p><input type="submit" value="Upload" /></p>
+			{{ form }}
+			<p><input type="submit" value="Submit" class="btn-primary" /></p>
 		</form>
 		
 	</body>
