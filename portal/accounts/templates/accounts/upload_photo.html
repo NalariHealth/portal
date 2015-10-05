@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Minimal Django File Upload Example</title>	
+		<title>Profile Picture Upload</title>	
 	</head>
 
 	<body>
@@ -16,8 +16,13 @@
 		<!-- Upload form. Note enctype attribute! -->
 		<form action="{% url 'accounts:photo' %}" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
-			{{ form }}
-			<p><input type="submit" value="Submit" class="btn-primary" /></p>
+			<p>{{ form.non_field_errors }}</p>
+			<p>{{ form.picfile.label_tag }} {{ form.picfile.help_text }}</p>
+			<p>
+				{{ form.picfile.errors }}
+				{{ form.picfile }}
+			</p>
+			<p><input type="submit" value="Upload" /></p>
 		</form>
 		
 	</body>
