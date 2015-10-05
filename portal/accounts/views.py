@@ -104,14 +104,15 @@ def photo(request):
 	context = {}
 	gu = gen_user.objects.get(user=request.user)
 	if request.method == 'POST':
-		
+		print 'in POST'
 		form = PictureForm(request.POST, request.FILES)
 		if form.is_valid():
+			print 'form is valid'
 			newpic = picture(picfile=request.FILES['picfile'])
 			newpic.save()
 			gu.picture = newpic
 			gu.save()
-			return homeviews.home
+			return homeviews.home(request)
 	context['picture'] = gu.picture
 	context['form'] = PictureForm()
 	return render(request, 'accounts/upload_photo.html', context)

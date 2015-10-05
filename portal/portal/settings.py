@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'accounts',
     'home',
     'zoom',
+    'feeds',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -95,6 +96,6 @@ EMAIL_USE_TLS = True
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = 'http://127.0.0.1:1234/media/'
+MEDIA_URL = 'http://127.0.0.1:8000/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = 'http://127.0.0.1:1234/static/'
+STATIC_URL = 'http://127.0.0.1:8000/static/'
