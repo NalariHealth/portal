@@ -1,0 +1,30 @@
+{% extends 'header.html' %}
+{% load staticfiles %}
+{% block title %}Edit Relationships{% endblock %}
+{% block content %}
+{% load custom_filters %}
+<style>
+	table tr td {
+		padding: 5px;
+		border: 1px black solid;
+	}
+	.indent {
+		margin-left: 100px;
+	}
+</style>
+<div class="jumbotron">
+	<h1>{{ feed }}</h1>
+</div>
+<h2>Practices</h2>
+{% for practice in practice_providers %}
+	<div class="indent">
+		<h3>{{ practice }}</h3>
+		<ul>
+			{% for provider in practice_providers|lookup:practice %}
+				<li>{{ provider }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endfor %}
+<h2>Members</h2>
+{% endblock %}

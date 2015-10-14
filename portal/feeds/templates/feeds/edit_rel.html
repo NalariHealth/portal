@@ -1,0 +1,13 @@
+{% extends 'header.html' %}
+{% load staticfiles %}
+{% block title %}Edit Relationship{% endblock %}
+{% block content %}
+<form action="{% url 'feeds:edit_rel' %}" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<table>
+	{{ form.as_table }}
+	<input type="hidden" name="original_name" value="{{ instance }}"/>
+	</table>
+	<input type="submit" value="Submit" class="btn-primary" /> <a href="{% url 'feeds:new' %}"><button class="btn">Cancel</button></a>
+</form>
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'header.html' %}
+{% load staticfiles %}
+{% block title %}New{% endblock %}
+{% block content %}
+<style>
+	.option:hover {
+        background-color: #BFBFBF;
+    }
+    .option {
+    	padding: 0px;
+        min-height: 100px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        display: block;
+        border-radius: 15px;
+        text-align: center;
+        vertical-align: center;
+    }
+    .donthighlight {
+    	line-height: 100%;
+    	vertical-align: center;
+    }
+</style>
+<div class="jumbotron">
+	<h1>Create</h1>
+	<a href="{% url 'feeds:new_feed' %}">
+		<div class="col-md-2 option">
+			<h3>Feed</h3>
+		</div>
+	</a>
+	<a href="{% url 'feeds:new_practice' %}">
+		<div class="col-md-2 option">
+			<h3>Practice</h3>
+		</div>
+	</a>
+	<a href="{% url 'feeds:new_provider' %}">
+		<div class="col-md-2 option">
+			<h3>Provider</h3>
+		</div>
+	</a>
+	<a href="{% url 'feeds:new_member' %}">
+		<div class="col-md-2 option">
+			<h3>Member</h3>
+		</div>
+	</a>
+	<a href="{% url 'feeds:new_rel' %}">
+		<div class="col-md-2 option">
+			<h3>Provider-Practice Relationship</h3>
+		</div>
+	</a>
+	<br><br>
+</div>
+<div class="jumbotron" style="clear:both;">
+	<h1>Edit</h1>
+	<form action="{% url 'feeds:select_feed' %}" method="post" enctype="multipart/form-data">
+		<div class="col-md-2 donthighlight">
+			{% csrf_token %}
+			{{ feedForm }}
+		</div>
+	</form>
+	<form action="{% url 'feeds:select_practice' %}" method="post" enctype="multipart/form-data">
+		<div class="col-md-2 donthighlight">
+			{% csrf_token %}
+			{{ practiceForm.as_table }}
+		</div>
+	</form>
+	<form action="{% url 'feeds:select_provider' %}" method="post" enctype="multipart/form-data">
+		<div class="col-md-2 donthighlight">
+			{% csrf_token %}
+			{{ providerForm.as_table }}
+		</div>
+	</form>
+	<form action="{% url 'feeds:select_member' %}" method="post" enctype="multipart/form-data">
+		<div class="col-md-2 donthighlight">
+			{% csrf_token %}
+			{{ memberForm.as_table }}
+		</div>
+	</form>
+	<form action="{% url 'feeds:select_practice_for_rel' %}" method="post" enctype="multipart/form-data">
+		<div class="col-md-2 donthighlight">
+			{% csrf_token %}
+			{{ selectPracticeForRelForm.as_table }}
+		</div>
+	</form>
+	<br><br>
+</div>
+<div class="jumbotron" style="clear:both;">
+	<h1>View</h1>
+	<form action="{% url 'feeds:view_feed' %}" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ feedForm }}
+	</form>
+</div>
+{% endblock %}

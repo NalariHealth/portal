@@ -1,0 +1,12 @@
+{% extends 'header.html' %}
+{% load staticfiles %}
+{% block title %}New Relationship{% endblock %}
+{% block content %}
+<form action="{% url 'feeds:new_rel' %}" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<table>
+	{{ form.as_table }}
+	</table>
+	<input type="submit" value="Submit" class="btn-primary" /> <a href="{% url 'feeds:new' %}"><button class="btn">Cancel</button></a>
+</form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'header.html' %}
+{% load staticfiles %}
+{% block title %}Edit Provider{% endblock %}
+{% block content %}
+<form action="{% url 'feeds:edit_provider' %}" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<table>
+	{{ form.as_table }}
+	<input type="hidden" name="original_name" value="{{ instance }}"/>
+	</table>
+	<input type="submit" value="Submit" class="btn-primary" /> <a href="{% url 'feeds:new' %}"><button class="btn">Cancel</button></a>
+</form>
+<form action="{% url 'feeds:delete_provider' %}" method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	<input type="hidden" name="original_name" value="{{ instance }}"/>
+	<input type="submit" value="Delete" class="btn-danger"/>
+</form>
+{% endblock %}

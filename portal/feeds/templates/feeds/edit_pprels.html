@@ -1,0 +1,68 @@
+{% extends 'header.html' %}
+{% load staticfiles %}
+{% block title %}Edit Relationships{% endblock %}
+{% block content %}
+<style>
+	table tr td {
+		padding: 5px;
+		border: 1px black solid;
+	}
+	table.center {
+		margin-left: auto;
+		margin-right: auto;
+	}
+</style>
+<div class="jumbotron">
+	<h3>{{ practice }}</h3>
+</div>
+<table class="center">
+	<tr>
+		<td>
+			<b>Provider</b>
+		</td>
+		<td>
+			<b>Inactive?</b>
+		</td>
+		<td>
+			<b>Practice Manager?</b>
+		</td>
+		<td>
+			<b>Edit</b>
+		</td>
+		<td>
+			<b>Delete</b>
+		</td>
+	</tr>
+	{% for rel in rels %}
+	<tr>
+		<td>
+			{{ rel.provider }}
+		</td>
+		<td>
+			{{ rel.inactive }}
+		</td>
+		<td>
+			{{ rel.practice_manager }}
+		</td>
+		<td>
+			<form action="{% url 'feeds:select_rel' %}" method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				<input type="hidden" name="rel" value="{{ rel.id }}">
+				<input type="submit" value="O" class="btn-primary">
+			</form>
+		</td>
+		<td>
+			<form action="{% url 'feeds:delete_rel' %}" method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				<input type="hidden" name="rel" value="{{ rel.id }}">
+				<input type="submit" value="X" class="btn-primary" />
+			</form>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+<div style="text-align:center; margin:10px;">
+	<a href="{% url 'feeds:new' %}"><button class="btn" style="align:center;">Cancel</button></a>
+</div>
+
+{% endblock %}
