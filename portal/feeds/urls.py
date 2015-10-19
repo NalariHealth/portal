@@ -26,5 +26,5 @@ urlpatterns = patterns('',
     url(r'delete_member', views.delete_member, name='delete_member'),
     url(r'delete_practice', views.delete_practice, name='delete_practice'),
     url(r'delete_provider', views.delete_provider, name='delete_provider'),
-    url(r'', views.new, name='new'),
+    url(r'', views.new),
 )

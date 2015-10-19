@@ -3,6 +3,7 @@ from django.forms import ModelForm, Form, ModelChoiceField
 from models import feed, practice, provider, provider_practice_rel, member 
 from django.core.exceptions import MultipleObjectsReturned
 from django import forms
+import csv 
 
 class feedForm(ModelForm):
 	class Meta:
@@ -36,7 +37,7 @@ class selectPracticeForm(Form):
 	practice = ModelChoiceField(queryset=practice.objects.all(), widget=forms.Select(attrs={"onChange": 'submit();'}))
 
 class selectPracticeForRelForm(Form):
-	practice = ModelChoiceField(queryset=practice.objects.all(), widget=forms.Select(attrs={"onChange": 'submit();'}), label='Provider/Practice Relationship')
+	practice = ModelChoiceField(queryset=practice.objects.all(), widget=forms.Select(attrs={"onChange": 'submit();'}), label='Provider-Practice Relationship')
 
 class selectProviderForm(Form):
 	provider = ModelChoiceField(queryset=provider.objects.all(), widget=forms.Select(attrs={"onChange": 'submit();'}))
@@ -54,7 +55,7 @@ def new_feed(request):
 	if request.method == 'POST':
 		form = feedForm(request.POST)
 		if form.is_valid():
-			form.save()
+			nf = form.save()
 			return new(request)
 	form = feedForm()
 	return render(request, 'feeds/new_feed.html', {'form': form})
@@ -64,7 +65,6 @@ def new_practice(request):
 		form = practiceForm(request.POST)
 		if form.is_valid():
 			nf = form.save()
-			request.method = 'GET'
 			return new(request)
 	form = practiceForm()
 	return render(request, 'feeds/new_practice.html', {'form': form})
@@ -74,7 +74,6 @@ def new_provider(request):
 		form = providerForm(request.POST)
 		if form.is_valid():
 			nf = form.save()
-			request.method = 'GET'
 			return new(request)
 	form = providerForm()
 	return render(request, 'feeds/new_provider.html', {'form': form})
@@ -84,7 +83,6 @@ def new_member(request):
 		form = memberForm(request.POST)
 		if form.is_valid():
 			nf = form.save()
-			request.method = 'GET'
 			return new(request)
 	form = memberForm()
 	return render(request, 'feeds/new_member.html', {'form': form})
@@ -94,10 +92,6 @@ def new_pprel(request):
 		form = pprelForm(request.POST)
 		if form.is_valid():
 			nf = form.save()
-			try:
-				existing = provider_practice_rel.objects.get(provider=nf.provider, practice=nf.practice)
-			except MultipleObjectsReturned:
-				nf.delete()
 			return new(request)
 	form = pprelForm()
 	return render(request, 'feeds/new_pprel.html', {'form': form})
@@ -105,7 +99,7 @@ def new_pprel(request):
 def select_feed(request):
 	if request.method == 'POST':
 		f = feed.objects.get(pk=request.POST['feed'])
-		original_name = f.name 
+		original_name = request.POST['feed']
 		form = feedForm(instance=f)
 		return render(request, 'feeds/edit_feed.html', {'form': form, 'instance': original_name})
 	else:
@@ -114,7 +108,7 @@ def select_feed(request):
 def edit_feed(request):
 	if request.method == 'POST':
 		original_name = request.POST['original_name']
-		original_feed = feed.objects.get(name=original_name)
+		original_feed = feed.objects.get(pk=original_name)
 		form = feedForm(request.POST, instance=original_feed)
 		if form.is_valid():
 			form.save()
@@ -123,7 +117,7 @@ def edit_feed(request):
 def select_practice(request):
 	if request.method == 'POST':
 		p = practice.objects.get(pk=request.POST['practice'])
-		original_name = p.name 
+		original_name = request.POST['practice']
 		form = practiceForm(instance=p)
 		return render(request, 'feeds/edit_practice.html', {'form': form, 'instance': original_name})
 	else:
@@ -131,8 +125,7 @@ def select_practice(request):
 
 def edit_practice(request):
 	if request.method == 'POST':
-		original_name = request.POST['original_name']
-		original_practice = practice.objects.get(name=original_name)
+		original_practice = practice.objects.get(pk=request.POST['original_name'])
 		form = practiceForm(request.POST, instance=original_practice)
 		if form.is_valid():
 			form.save()
@@ -141,7 +134,7 @@ def edit_practice(request):
 def select_provider(request):
 	if request.method == 'POST':
 		p = provider.objects.get(pk=request.POST['provider'])
-		original_id = p.identifier 
+		original_id = request.POST['provider']
 		form = providerForm(instance=p)
 		return render(request, 'feeds/edit_provider.html', {'form': form, 'instance': original_id})
 	else:
@@ -149,8 +142,7 @@ def select_provider(request):
 
 def edit_provider(request):
 	if request.method == 'POST':
-		original_id = request.POST['original_name']
-		original_provider = provider.objects.get(identifier=original_id)
+		original_provider = provider.objects.get(pk=request.POST['original_name'])
 		form = providerForm(request.POST, instance=original_provider)
 		if form.is_valid():
 			form.save()
@@ -159,7 +151,7 @@ def edit_provider(request):
 def select_member(request):
 	if request.method == 'POST':
 		m = member.objects.get(pk=request.POST['member'])
-		original_id = m.ssn
+		original_id = request.POST['member']
 		form = memberForm(instance=m)
 		return render(request, 'feeds/edit_member.html', {'form': form, 'instance': original_id})
 	else:
@@ -167,8 +159,7 @@ def select_member(request):
 
 def edit_member(request):
 	if request.method == 'POST':
-		original_id = request.POST['original_name']
-		original_member = member.objects.get(ssn=original_id)
+		original_member = member.objects.get(pk=request.POST['original_name'])
 		form = memberForm(request.POST, instance=original_member)
 		if form.is_valid():
 			form.save()
@@ -193,15 +184,14 @@ def delete_rel(request):
 def select_rel(request):
 	if request.method == 'POST':
 		r = provider_practice_rel.objects.get(pk=request.POST['rel'])
-		original_id = r.id
+		original_id = request.POST['rel']
 		form = pprelForm(instance=r)
 		return render(request, 'feeds/edit_rel.html', {'form': form, 'instance': original_id})
 	return new(request)
 
 def edit_rel(request):
 	if request.method == 'POST':
-		original_id = request.POST['original_name']
-		original_rel = provider_practice_rel.objects.get(pk=original_id)
+		original_rel = provider_practice_rel.objects.get(pk=request.POST['original_name'])
 		form = pprelForm(request.POST, instance=original_rel)
 		if form.is_valid():
 			form.save()
