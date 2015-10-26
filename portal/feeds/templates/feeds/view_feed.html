@@ -14,6 +14,21 @@
 </style>
 <div class="jumbotron">
 	<h1>{{ feed }}</h1>
+	<form method="post" action="{% url 'feeds:download_rels' %}">
+		{% csrf_token %}
+		<input type="hidden" name="feed" id="feed" value="{{ feed.pk }}"/>
+		<input type="submit" value="Dowload Provider-Practice Relationships CSV"/>
+	</form>
+	<form method="post" action="{% url 'feeds:download_practices' %}">
+		{% csrf_token %}
+		<input type="hidden" name="feed" id="feed" value="{{ feed.pk }}"/>
+		<input type="submit" value="Download Practices CSV"/>
+	</form>
+	<form method="post" action="{% url 'feeds:download_providers' %}">
+		{% csrf_token %}
+		<input type="hidden" name="feed" id="feed" value="{{ feed.pk }}"/>
+		<input type="submit" value="Download Providers CSV"/>
+	</form>
 </div>
 <h2>Practices</h2>
 {% for practice in practice_providers %}

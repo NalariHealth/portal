@@ -26,5 +26,8 @@ urlpatterns = patterns('',
     url(r'delete_member', views.delete_member, name='delete_member'),
     url(r'delete_practice', views.delete_practice, name='delete_practice'),
     url(r'delete_provider', views.delete_provider, name='delete_provider'),
+    url(r'download_rels', views.download_rels, name='download_rels'),
+    url(r'download_practices', views.download_practices, name='download_practices'),
+    url(r'download_providers', views.download_providers, name='download_providers'),
     url(r'', views.new),
 )
